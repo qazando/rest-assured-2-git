@@ -1,4 +1,4 @@
-name: Rodar todos os nossos testes
+name: Rodar todos os nossos teste
 
 on:
   push:
