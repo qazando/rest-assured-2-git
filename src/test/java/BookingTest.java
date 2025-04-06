@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 // Classe que contém os testes de API
-public class teste {
+public class BookingTest {
 
     public String lerJson(String caminhoArquivo) throws IOException {
         return new String(Files.readAllBytes(Paths.get(caminhoArquivo)));
