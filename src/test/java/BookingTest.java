@@ -1,5 +1,6 @@
 // Importa as classes necessárias para os testes
 import io.restassured.RestAssured; // Biblioteca para automação de testes REST
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test; // Framework de testes JUnit 5
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,8 +11,15 @@ import static org.hamcrest.Matchers.*;
 // Classe que contém os testes de API
 public class BookingTest {
 
+    BookingEndpoint bookingEndpoint = new BookingEndpoint();
+
     public String lerJson(String caminhoArquivo) throws IOException {
         return new String(Files.readAllBytes(Paths.get(caminhoArquivo)));
+    }
+
+    @Test
+    public void consultaPageObjects() {
+        bookingEndpoint.getAllBookings();
     }
 
     // Define um método de teste
@@ -49,6 +57,7 @@ public class BookingTest {
                 .body("additionalneeds", equalTo("super bowls"));
     }
 
+    @Tag("smoke")
     @Test
     public void cadastrarReserva() throws IOException {
         RestAssured.baseURI = "https://restful-booker.herokuapp.com";
@@ -70,4 +79,7 @@ public class BookingTest {
                 .body("booking.bookingdates.checkout", equalTo("2019-01-01"))
                 .body("booking.additionalneeds", equalTo("Breakfast"));
     }
+
+
+
 }
